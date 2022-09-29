@@ -1,9 +1,15 @@
-{% extends 'base.html' %} {% block content %}
-<h5>Nama:</h5>
-<b>{{ nama }}</b>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'wishlist/style.css' %}" />
 
-<div style="display: flex; flex-direction: column; items-align: center">
-	<table>
+<div
+	style="
+		padding: 24px;
+		display: flex;
+		flex-direction: column;
+		items-align: center;
+	"
+>
+	<table class="table">
 		<tr>
 			<th>Nama Barang</th>
 			<th>Harga Barang</th>
@@ -18,10 +24,5 @@
 		{% endfor %}
 	</table>
 	<h5>Sesi terakhir login: {{ last_login }}</h5>
-	<div style="display: flex; justify-content: center">
-		<button style="width: fit-content">
-			<a href="{% url 'wishlist:logout' %}">Logout</a>
-		</button>
-	</div>
 </div>
 {% endblock content %}

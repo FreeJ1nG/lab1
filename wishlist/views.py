@@ -17,7 +17,7 @@ def show_wishlist(request):
     "wishlist.html",
     {
       'list_barang': BarangWishlist.objects.all(),
-      'nama': "Andrew Jeremy",
+      'nama': request.user,
       'last_login': request.COOKIES['last_login']
     }
   )
