@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+<head>
+	{% load static %} {% block content %}
+	<link rel="stylesheet" href="{% static 'wishlist/style.css' %}" />
+	<script>
+		fetch("http://127.0.0.1:8000/wishlist/json/")
+			.then((resp) => resp.json())
+			.then((data) => {
+				for (let i = 0; i < data.length; i++) {
+					let new_row = document.createElement("tr");
+					let name = document.createElement("th");
+					name.innerHTML = data[i].fields.nama_barang;
+					let price = document.createElement("th");
+					price.innerHTML = data[i].fields.harga_barang;
+					let desc = document.createElement("th");
+					desc.innerHTML = data[i].fields.deskripsi;
+					new_row.append(name, price, desc);
+					document.getElementById(`wishlist-table`).appendChild(new_row);
+				}
+			});
+	</script>
+</head>
+
+<div
+	style="
+		padding: 24px;
+		display: flex;
+		flex-direction: column;
+		items-align: center;
+	"
+>
+	<table id="wishlist-table" class="table">
+		<tr>
+			<th>Nama Barang</th>
+			<th>Harga Barang</th>
+			<th>Deskripsi</th>
+		</tr>
+	</table>
+	<h5>Sesi terakhir login: {{ last_login }}</h5>
+</div>
+{% endblock content %}

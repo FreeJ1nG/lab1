@@ -22,6 +22,9 @@ def show_wishlist(request):
     }
   )
 
+def ajax(request):
+  return render(request, "wishlist_ajax.html", {})
+
 def show_xml(request):
   data = BarangWishlist.objects.all()
   return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
